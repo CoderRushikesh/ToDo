@@ -1,7 +1,7 @@
 // src/pages/NotesPage.js
 import React, { useState } from 'react';
 import NoteCard from '../Components/NoteCard';
-
+import './NotePage.css';
 
 const NotesPage = () => {
   const [notes, setNotes] = useState([]);

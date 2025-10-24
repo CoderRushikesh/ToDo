@@ -1,6 +1,6 @@
 // src/pages/NotesPage.js
 import React, { useState } from 'react';
-import NoteCard from '../Components/NoteCard';
+import NoteCard from './NoteCard';
 import './NotePage.css';
 
 const NotesPage = () => {
@@ -9,13 +9,25 @@ const NotesPage = () => {
 
   const addNote = () => {
     if (input.trim()) {
-      setNotes([...notes, { id: Date.now(), text: input }]);
+      const newNote = {
+        id: Date.now(),
+        text: input,
+      };
+      setNotes(prev => [...prev, newNote]);
       setInput('');
     }
   };
 
   const deleteNote = (id) => {
-    setNotes(notes.filter(note => note.id !== id));
+    setNotes(prev => prev.filter(note => note.id !== id));
+  };
+
+  const editNote = (id, newText) => {
+    setNotes(prev =>
+      prev.map(note =>
+        note.id === id ? { ...note, text: newText } : note
+      )
+    );
   };
 
   return (
@@ -29,9 +41,15 @@ const NotesPage = () => {
         />
         <button onClick={addNote}>Add</button>
       </div>
+
       <div className="notes-list">
         {notes.map(note => (
-          <NoteCard key={note.id} note={note} onDelete={deleteNote} />
+          <NoteCard
+            key={note.id}
+            note={note}
+            onDelete={deleteNote}
+            onEdit={editNote}
+          />
         ))}
       </div>
     </div>

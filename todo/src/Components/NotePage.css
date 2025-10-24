@@ -1,20 +1,26 @@
-/* src/pages/NotesPage.css */
 .notes-page {
   padding: 2rem;
+  max-width: 600px;
+  margin: auto;
 }
+
 .note-input {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
 }
+
 .note-input input {
   flex: 1;
   padding: 0.5rem;
 }
+
 .note-input button {
   padding: 0.5rem 1rem;
 }
+
 .notes-list {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 1rem;
 }
